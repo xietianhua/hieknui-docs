@@ -1,0 +1,133 @@
+@import "../../../src/less/index";
+//@import "../../src/less/theme/dark";
+//@primary: 'purple';
+
+html, body {
+  height: 100%;
+  .scroll();
+}
+
+.tab-pane {
+  overflow: hidden;
+  padding: 16px;
+  div.line {
+    padding: 8px 0;
+    .clearfix;
+  }
+}
+
+#tab-7 .hu-row {
+  * > div {
+    color: #fff;
+    background: @color-primary;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+  }
+  *:nth-child(odd) > div {
+    background: fade(@color-primary, 50);
+  }
+}
+
+.hu-card {
+  .hu-card-head {
+    line-height: 40px;
+    padding: 0 8px;
+  }
+}
+
+#tab-6 {
+  .hu-card-body {
+    .hu-card-body {
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+    }
+  }
+}
+
+.demo-tabs {
+  a {
+    pointer-events: initial !important;
+  }
+}
+
+.icon_lists {
+  li {
+    float: left;
+    width: 150px;
+    height: 180px;
+    text-align: center;
+    list-style: none !important;
+    padding: 0 8px;
+    word-break: break-all;
+  }
+  .icon {
+    font-size: 42px;
+    line-height: 100px;
+    margin: 10px 0;
+    color: #333;
+    cursor: pointer;
+    -webkit-transition: font-size 0.25s ease-out 0s;
+    -moz-transition: font-size 0.25s ease-out 0s;
+    transition: font-size 0.25s ease-out 0s;
+    &:hover {
+      font-size: 100px;
+    }
+  }
+
+}
+
+.prompt-success {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -15px 0 0 -100px;
+  display: none;
+  background: @color-primary;
+}
+
+.code-demo{
+  &>.hu-card-head{
+    border: 0;
+    padding: 0;
+  }
+  margin-bottom: 32px;
+  .code-desc{
+    .font-title;
+    margin: 24px 0 8px;
+  }
+}
+
+pre{
+  margin:0;
+}
+
+#form-output{
+  width: 100%;
+  border: 0;
+}
+
+button[data-modal],#modal-base{
+  margin-bottom: 8px;
+}
+
+#demo-fab{
+  margin: 100px;
+}
+
+.modal-outside-container>.hu-tab-content{
+  height: calc(~"100% - 48px");
+  &>.tab-pane{
+    padding: 0;
+  }
+}
+
+.demo-tabs{
+  min-width: 142px;
+}

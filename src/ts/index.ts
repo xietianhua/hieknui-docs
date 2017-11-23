@@ -6,6 +6,47 @@ declare const style_html: any;
 declare const js_beautify: any;
 
 class Index {
+
+    private static highlight($item: JQuery, html = '', js = '', css = '') {
+        let tabId1 = HuCommonUtils.randomId('code-tab');
+        let tabId2 = HuCommonUtils.randomId('code-tab');
+        let tabId3 = HuCommonUtils.randomId('code-tab');
+        let tabId4 = HuCommonUtils.randomId('code-tab');
+        let tabHTML = `<div class="hu-card card-shadow code-demo">
+                            <div class="hu-card-head">
+                                <ul class="hu-tabs tabs-primary">
+                                    <li class="active"><a href="#${tabId1}">Demo</a></li>
+                                    ${html ? `<li><a href="#${tabId2}">HTML</a></li>` : `` }
+                                    ${js ? `<li><a href="#${tabId3}">JAVASCRIPT</a></li>` : `` }
+                                    ${css ? `<li><a href="#${tabId4}">CSS</a></li>` : `` }
+                                </ul>
+                            </div>
+                            <div class="hu-card-body">
+                                <div class="hu-tab-content">
+                                    <div class="tab-pane active" id="${tabId1}">
+                                        ${html}
+                                    </div>
+                                    <div class="tab-pane" id="${tabId2}">
+                                        <pre><code class="html"></code></pre>
+                                    </div>
+                                    <div class="tab-pane" id="${tabId3}">
+                                        <pre><code class="javascript">${js}</code></pre>
+                                    </div>
+                                    <div class="tab-pane" id="${tabId4}">
+                                        <pre><code class="css">${css}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+        const $new = $(tabHTML);
+        html = style_html(html);
+        $new.find('code.html').text(html);
+        $item.replaceWith($new);
+        hljs.highlightBlock($new.find('code.html')[0]);
+        hljs.highlightBlock($new.find('code.javascript')[0]);
+        hljs.highlightBlock($new.find('code.css')[0]);
+    }
+
     constructor() {
         this.init();
     }
@@ -51,48 +92,8 @@ class Index {
             if ($form.hasClass('line')) {
                 html = $form.html();
             }
-            Demo.highlight($form, html);
+            Index.highlight($form, html);
         });
-    }
-
-    private static highlight($item: JQuery, html = '', js = '', css = '') {
-        let tabId1 = HuCommonUtils.randomId('code-tab');
-        let tabId2 = HuCommonUtils.randomId('code-tab');
-        let tabId3 = HuCommonUtils.randomId('code-tab');
-        let tabId4 = HuCommonUtils.randomId('code-tab');
-        let tabHTML = `<div class="hu-card card-shadow code-demo">
-                            <div class="hu-card-head">
-                                <ul class="hu-tabs tabs-primary">
-                                    <li class="active"><a href="#${tabId1}">Demo</a></li>
-                                    ${html ? `<li><a href="#${tabId2}">HTML</a></li>` : `` }
-                                    ${js ? `<li><a href="#${tabId3}">JAVASCRIPT</a></li>` : `` }
-                                    ${css ? `<li><a href="#${tabId4}">CSS</a></li>` : `` }
-                                </ul>
-                            </div>
-                            <div class="hu-card-body">
-                                <div class="hu-tab-content">
-                                    <div class="tab-pane active" id="${tabId1}">
-                                        ${html}
-                                    </div>
-                                    <div class="tab-pane" id="${tabId2}">
-                                        <pre><code class="html"></code></pre>
-                                    </div>
-                                    <div class="tab-pane" id="${tabId3}">
-                                        <pre><code class="javascript">${js}</code></pre>
-                                    </div>
-                                    <div class="tab-pane" id="${tabId4}">
-                                        <pre><code class="css">${css}</code></pre>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`;
-        const $new = $(tabHTML);
-        html = style_html(html);
-        $new.find('code.html').text(html);
-        $item.replaceWith($new);
-        hljs.highlightBlock($new.find('code.html')[0]);
-        hljs.highlightBlock($new.find('code.javascript')[0]);
-        hljs.highlightBlock($new.find('code.css')[0]);
     }
 
     private buildDemo() {
@@ -141,12 +142,12 @@ class Index {
                 let tabId = HuCommonUtils.randomId('code-tab');
                 $api.attr('id', tabId);
                 $head.append(`<li><a href="#${tabId}">API</a></li>`);
-                const $code = $api.find('.javascript');
-                if ($code.length) {
-                    const code = $code.text().trim();
+                const $code2 = $api.find('.javascript');
+                if ($code2.length) {
+                    const code = $code2.text().trim();
                     if (code) {
-                        $code.html(`<pre><code class="javascript">${js_beautify(code)}</code></pre>`);
-                        hljs.highlightBlock($code.find('code.javascript')[0]);
+                        $code2.html(`<pre><code class="javascript">${js_beautify(code)}</code></pre>`);
+                        hljs.highlightBlock($code2.find('code.javascript')[0]);
                     }
                 }
             }
@@ -156,7 +157,7 @@ class Index {
     }
 
     private sw() {
-        if ('serviceWorker' in navigator && location.protocol == 'https:') {
+        if ('serviceWorker' in navigator && location.protocol === 'https:') {
             navigator.serviceWorker.register('/hieknui/sw.js?t=' + new Date().getTime(), {scope: '/hieknui/'}).then(function (reg) {
 
                 if (reg.installing) {
@@ -176,5 +177,5 @@ class Index {
 }
 
 $(() => {
-    new Index();
+    const indexService = new Index();
 });

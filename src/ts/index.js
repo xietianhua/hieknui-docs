@@ -1,49 +1,8 @@
-var Demo = /** @class */ (function () {
-    function Demo() {
+var Index = (function () {
+    function Index() {
         this.init();
     }
-    Demo.prototype.init = function () {
-        this.sw();
-        this.updateTabPos();
-        this.buildDemo();
-        this.copy();
-        this.setDocs();
-    };
-    Demo.prototype.updateTabPos = function () {
-        if (location.hash) {
-            var $a = $('a[href="' + location.hash + '"]');
-            $a.parent().trigger('click');
-            var $p = $a.closest('.tab-pane');
-            if ($p.length) {
-                var id = $p.attr('id');
-                $('a[href="#' + id + '"]').parent().trigger('click');
-            }
-        }
-    };
-    Demo.prototype.copy = function () {
-        var clipboard = new Clipboard('.icon');
-        $('li').find('i').each(function (i, v) {
-            $(v).attr('data-clipboard-text', v.outerHTML);
-        });
-        clipboard.on('success', function () {
-            $('.prompt-success').show(200, function () {
-                setTimeout(function () {
-                    $('.prompt-success').hide(200);
-                }, 500);
-            });
-        });
-    };
-    Demo.prototype.setDocs = function () {
-        $('.demo-html').each(function (i, v) {
-            var $form = $(v).removeClass('demo-html');
-            var html = $form[0].outerHTML;
-            if ($form.hasClass('line')) {
-                html = $form.html();
-            }
-            Demo.highlight($form, html);
-        });
-    };
-    Demo.highlight = function ($item, html, js, css) {
+    Index.highlight = function ($item, html, js, css) {
         if (html === void 0) { html = ''; }
         if (js === void 0) { js = ''; }
         if (css === void 0) { css = ''; }
@@ -60,7 +19,48 @@ var Demo = /** @class */ (function () {
         hljs.highlightBlock($new.find('code.javascript')[0]);
         hljs.highlightBlock($new.find('code.css')[0]);
     };
-    Demo.prototype.buildDemo = function () {
+    Index.prototype.init = function () {
+        this.sw();
+        this.updateTabPos();
+        this.buildDemo();
+        this.copy();
+        this.setDocs();
+    };
+    Index.prototype.updateTabPos = function () {
+        if (location.hash) {
+            var $a = $('a[href="' + location.hash + '"]');
+            $a.parent().trigger('click');
+            var $p = $a.closest('.tab-pane');
+            if ($p.length) {
+                var id = $p.attr('id');
+                $('a[href="#' + id + '"]').parent().trigger('click');
+            }
+        }
+    };
+    Index.prototype.copy = function () {
+        var clipboard = new Clipboard('.icon');
+        $('li').find('i').each(function (i, v) {
+            $(v).attr('data-clipboard-text', v.outerHTML);
+        });
+        clipboard.on('success', function () {
+            $('.prompt-success').show(200, function () {
+                setTimeout(function () {
+                    $('.prompt-success').hide(200);
+                }, 500);
+            });
+        });
+    };
+    Index.prototype.setDocs = function () {
+        $('.demo-html').each(function (i, v) {
+            var $form = $(v).removeClass('demo-html');
+            var html = $form[0].outerHTML;
+            if ($form.hasClass('line')) {
+                html = $form.html();
+            }
+            Index.highlight($form, html);
+        });
+    };
+    Index.prototype.buildDemo = function () {
         $('.code-demo').each(function (i, v) {
             var $v = $(v);
             var $demo = $v.find('[data-tab="demo"]');
@@ -101,12 +101,12 @@ var Demo = /** @class */ (function () {
                 var tabId = HuCommonUtils.randomId('code-tab');
                 $api.attr('id', tabId);
                 $head.append("<li><a href=\"#" + tabId + "\">API</a></li>");
-                var $code_1 = $api.find('.javascript');
-                if ($code_1.length) {
-                    var code = $code_1.text().trim();
+                var $code2 = $api.find('.javascript');
+                if ($code2.length) {
+                    var code = $code2.text().trim();
                     if (code) {
-                        $code_1.html("<pre><code class=\"javascript\">" + js_beautify(code) + "</code></pre>");
-                        hljs.highlightBlock($code_1.find('code.javascript')[0]);
+                        $code2.html("<pre><code class=\"javascript\">" + js_beautify(code) + "</code></pre>");
+                        hljs.highlightBlock($code2.find('code.javascript')[0]);
                     }
                 }
             }
@@ -114,8 +114,8 @@ var Demo = /** @class */ (function () {
             $head.find('li:eq(0)').trigger('click');
         });
     };
-    Demo.prototype.sw = function () {
-        if ('serviceWorker' in navigator && location.protocol == 'https:') {
+    Index.prototype.sw = function () {
+        if ('serviceWorker' in navigator && location.protocol === 'https:') {
             navigator.serviceWorker.register('/hieknui/sw.js?t=' + new Date().getTime(), { scope: '/hieknui/' }).then(function (reg) {
                 if (reg.installing) {
                     console.log('Service worker installing');
@@ -132,9 +132,9 @@ var Demo = /** @class */ (function () {
             });
         }
     };
-    return Demo;
+    return Index;
 }());
 $(function () {
-    new Demo();
+    var indexService = new Index();
 });
-//# sourceMappingURL=demo.js.map
+//# sourceMappingURL=index.js.map

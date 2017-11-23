@@ -1,32 +1,32 @@
 (function (that, caches, Promise) {
     var version = 'v14';
-    var redirectUrl = '/hieknui/docs/images/29766.jpg';
+    var redirectUrl = '/hieknui-docs/docs/images/29766.jpg';
     that.addEventListener('install', function (event) {
         that.skipWaiting();
         event.waitUntil(caches.open(version).then(function (cache) {
             return cache.addAll([
-                '/hieknui/index.html',
-                '/hieknui/src/ts/index.js',
-                '/hieknui/src/less/index.css',
-                '/hieknui/assets/jsformat.js',
-                '/hieknui/assets/htmlformat.js',
-                '/hieknui/assets/hieknui.js',
-                '/hieknui/assets/font/iconfont.css',
-                '/hieknui/assets/font/iconfont.eot?t=1502946374117',
-                '/hieknui/assets/font/iconfont.eot?t=1502946374117#iefix',
-                '/hieknui/assets/font/iconfont.js',
-                '/hieknui/assets/font/iconfont.svg?t=1502946374117#hufont',
-                '/hieknui/assets/font/iconfont.ttf?t=1502946374117',
-                '/hieknui/assets/font/iconfont.woff?t=1502946374117',
-                '/hieknui/assets/github.min.css',
-                '/hieknui/assets/jquery.min.js',
-                '/hieknui/assets/clipboard.min.js',
-                '/hieknui/assets/jquery.mousewheel.min.js',
-                '/hieknui/assets/lodash.min.js',
-                '/hieknui/assets/highlight.min.js',
-                '/hieknui/assets/xml.min.js',
-                '/hieknui/assets/javascript.min.js',
-                '/hieknui/assets/css.min.js'
+                '/hieknui-docs/index.html',
+                '/hieknui-docs/src/ts/index.js',
+                '/hieknui-docs/src/less/index.css',
+                '/hieknui-docs/assets/jsformat.js',
+                '/hieknui-docs/assets/htmlformat.js',
+                '/hieknui-docs/assets/hieknui.js',
+                '/hieknui-docs/assets/font/iconfont.css',
+                '/hieknui-docs/assets/font/iconfont.eot?t=1502946374117',
+                '/hieknui-docs/assets/font/iconfont.eot?t=1502946374117#iefix',
+                '/hieknui-docs/assets/font/iconfont.js',
+                '/hieknui-docs/assets/font/iconfont.svg?t=1502946374117#hufont',
+                '/hieknui-docs/assets/font/iconfont.ttf?t=1502946374117',
+                '/hieknui-docs/assets/font/iconfont.woff?t=1502946374117',
+                '/hieknui-docs/assets/github.min.css',
+                '/hieknui-docs/assets/jquery.min.js',
+                '/hieknui-docs/assets/clipboard.min.js',
+                '/hieknui-docs/assets/jquery.mousewheel.min.js',
+                '/hieknui-docs/assets/lodash.min.js',
+                '/hieknui-docs/assets/highlight.min.js',
+                '/hieknui-docs/assets/xml.min.js',
+                '/hieknui-docs/assets/javascript.min.js',
+                '/hieknui-docs/assets/css.min.js'
             ]);
         }));
     });

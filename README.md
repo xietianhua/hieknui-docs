@@ -30,4 +30,4 @@ cnpm install @jiangrun002/hieknui
 <i class="icon hufont ic-account-balance-wallet"></i>
 ```
 
-[demo-url]: https://jiangrun002.github.io/hieknui/index.html
+[demo-url]: https://jiangrun002.github.io/hieknui-docs/index.html

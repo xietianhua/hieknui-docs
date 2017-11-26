@@ -1,4 +1,4 @@
-var Index = (function () {
+var Index = /** @class */ (function () {
     function Index() {
         this.init();
     }
@@ -137,4 +137,5 @@ var Index = (function () {
 $(function () {
     var indexService = new Index();
 });
+
 //# sourceMappingURL=index.js.map
